@@ -54,5 +54,14 @@ public class StudentController {
         studentRepository.deleteById(id);
         return "successfully DELETED";
     }
-    
+
+    @GetMapping("/random-number")
+    public Map<String, Integer> getRandomNumber() {
+        Map<String, Integer> randnumber = new HashMap<String, Integer>();
+        Random random = new Random();
+        int randomNumber = random.nextInt(12000);
+        randnumber.put("Your random number is: ", randomNumber);
+        JSONObject result = new JSONObject(randnumber);
+        return randnumber;
+    }
 }
