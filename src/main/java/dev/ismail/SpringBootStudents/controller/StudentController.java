@@ -9,11 +9,9 @@ import org.springframework.web.bind.annotation.*;
 import dev.ismail.SpringBootStudents.exception.ResourceNotFoundException;
 import dev.ismail.SpringBootStudents.model.Student;
 import java.util.List;
+import java.util.Random;
 import java.util.Map;
 import java.util.HashMap;
-import java.util.Random;
-
-
 @RestController
 @RequestMapping("/api/v1/students")
 @AllArgsConstructor
@@ -55,12 +53,23 @@ public class StudentController {
         return "successfully DELETED";
     }
 
-    @GetMapping("/random-number")
+/*    @GetMapping("/random-number")
     public Map<String, Integer> getRandomNumber() {
         Map<String, Integer> randnumber = new HashMap<String, Integer>();
         Random random = new Random();
-        int randomNumber = random.nextInt(12000);
-        randnumber.put("Your random number is: ", randomNumber);
+        int randomNumber = random.nextInt(9999);
+        randnumber.put("Your random number is ", randomNumber);
+        JSONObject result = new JSONObject(randnumber);
+        return randnumber;
+    }*/  //esto no se utiliza en version final de programa por convencion de como se usa un json
+
+    @GetMapping("/random-number")
+    public Map<String, Object> getRandomNumber() {
+        Map<String, Object> randnumber = new HashMap<String, Object>();
+        Random random = new Random();
+        int randomNumber = random.nextInt(9999);
+        randnumber.put("description", "A random number");
+        randnumber.put("numb", randomNumber);
         JSONObject result = new JSONObject(randnumber);
         return randnumber;
     }
